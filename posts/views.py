@@ -1,7 +1,9 @@
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from .forms import PostForm
+from .forms import CommentForm, PostForm
 from .models import Post
 
 
@@ -12,7 +14,9 @@ class PostListView(generic.ListView):
 
 
 class PostDetailView(generic.DetailView):
-    # Responde automaticamente com 404 caso o post não exista
+    # Responde automaticamente com 404 caso o post não exista.
+    # Os comentários são acessados no template por post.comments.all,
+    # já ordenados pelo mais recente (Meta.ordering do modelo Comment)
     model = Post
     template_name = 'posts/detail.html'
 
@@ -35,3 +39,19 @@ class PostDeleteView(generic.DeleteView):
     model = Post
     template_name = 'posts/delete.html'
     success_url = reverse_lazy('posts:index')
+
+
+def create_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post  # associa o comentário ao post da URL
+            comment.save()
+            return HttpResponseRedirect(
+                reverse('posts:detail', args=(post.id,)))
+    else:
+        form = CommentForm()
+    context = {'post': post, 'form': form}
+    return render(request, 'posts/comment.html', context)

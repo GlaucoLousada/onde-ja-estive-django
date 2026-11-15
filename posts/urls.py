@@ -11,4 +11,5 @@ urlpatterns = [
          name='update'),
     path('posts/<int:pk>/delete/', views.PostDeleteView.as_view(),
          name='delete'),
+    path('posts/<int:pk>/comment/', views.create_comment, name='comment'),
 ]

@@ -15,4 +15,23 @@
     <a class="button danger" href="{% url 'posts:delete' post.id %}">Remover</a>
     <a class="button secondary" href="{% url 'posts:index' %}">Voltar para a lista</a>
 </div>
+<section>
+    <h2>Comentários ({{ post.comments.count }})</h2>
+    {% if post.comments.all %}
+    <ul class="comments">
+        {% for comment in post.comments.all %}
+        <li>
+            <strong>{{ comment.author.username }}</strong>
+            <span class="date">em {{ comment.pub_date|date:"d/m/Y H:i" }}</span>
+            <p>{{ comment.text }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Ainda não há comentários neste post.</p>
+    {% endif %}
+    <div class="actions">
+        <a class="button" href="{% url 'posts:comment' post.id %}">Adicionar comentário</a>
+    </div>
+</section>
 {% endblock %}

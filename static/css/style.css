@@ -23,7 +23,7 @@ a { color: var(--cor); }
 form p { margin: 0 0 1rem; }
 form label { display: block; font-weight: bold; margin-bottom: .25rem; font-family: Arial, Helvetica, sans-serif; }
 form input[type=text], form textarea, form select { width: 100%; padding: .5rem; border: 1px solid var(--borda); border-radius: 4px; font: inherit; }
-form textarea { min-height: 14rem; font-family: Consolas, monospace; font-size: .9rem; }
+form textarea { min-height: 10rem; font-family: Consolas, monospace; font-size: .9rem; }
 .errorlist { color: #a83232; padding-left: 1rem; }
 .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; font-family: Arial, Helvetica, sans-serif; }
 .tags a { display: inline-block; border: 1px solid var(--cor); border-radius: 999px; padding: .1rem .75rem; font-size: .85rem; text-decoration: none; }
