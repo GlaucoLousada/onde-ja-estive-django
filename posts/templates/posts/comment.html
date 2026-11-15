@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo comentário | Onde Já Estive{% endblock %}
+
+{% block content %}
+<h1>Novo comentário</h1>
+<p>Comentando no post <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>.</p>
+<form action="{% url 'posts:comment' post.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="actions">
+        <button type="submit">Publicar comentário</button>
+        <a class="button secondary" href="{% url 'posts:detail' post.id %}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}
