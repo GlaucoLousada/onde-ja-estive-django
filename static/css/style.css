@@ -30,3 +30,5 @@ form textarea { min-height: 10rem; font-family: Consolas, monospace; font-size: 
 .comments { list-style: none; padding: 0; }
 .comments li { background: #fff; border: 1px solid var(--borda); border-radius: 6px; padding: .7rem 1rem; margin-bottom: .7rem; }
 .comments li p { margin: .3rem 0 0; }
+figure { margin: 1rem 0; }
+figcaption { font-size: .85rem; color: #6b6f73; }
