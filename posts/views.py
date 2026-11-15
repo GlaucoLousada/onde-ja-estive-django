@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.utils import timezone
 
+from .forms import PostForm
 from .models import Post
 
 
@@ -21,22 +21,28 @@ def detail_post(request, pk):
 
 def create_post(request):
     if request.method == 'POST':
-        post = Post(title=request.POST['title'],
-                    content=request.POST['content'],
-                    pub_date=timezone.now())
-        post.save()
-        return HttpResponseRedirect(reverse('posts:detail', args=(post.id,)))
-    return render(request, 'posts/create.html', {})
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return HttpResponseRedirect(
+                reverse('posts:detail', args=(post.id,)))
+    else:
+        form = PostForm()
+    context = {'form': form}
+    return render(request, 'posts/create.html', context)
 
 
 def update_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
-        post.title = request.POST['title']
-        post.content = request.POST['content']
-        post.save()
-        return HttpResponseRedirect(reverse('posts:detail', args=(post.id,)))
-    context = {'post': post}
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(
+                reverse('posts:detail', args=(post.id,)))
+    else:
+        form = PostForm(instance=post)
+    context = {'post': post, 'form': form}
     return render(request, 'posts/update.html', context)
 
 
