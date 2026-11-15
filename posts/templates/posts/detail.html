@@ -6,6 +6,14 @@
 <article>
     <h1>{{ post.title }}</h1>
     <p class="date">Publicado em {{ post.pub_date|date:"d/m/Y \à\s H:i" }}</p>
+    {% if post.categories.all %}
+    <ul class="tags">
+        <li>Categorias:</li>
+        {% for category in post.categories.all %}
+        <li><a href="{% url 'posts:category' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="content">
         {{ post.content|safe }}
     </div>

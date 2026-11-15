@@ -32,3 +32,18 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.author.username}: {self.text[:40]}'
+
+
+class Category(models.Model):
+    name = models.CharField('nome', max_length=255)
+    description = models.TextField('descrição')
+    # Um post pode estar em várias categorias (acesso reverso: post.categories)
+    posts = models.ManyToManyField(Post, related_name='categories',
+                                   blank=True)
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
