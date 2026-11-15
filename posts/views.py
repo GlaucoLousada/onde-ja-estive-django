@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from .forms import CommentForm, PostForm
-from .models import Post
+from .models import Category, Post
 
 
 class PostListView(generic.ListView):
@@ -55,3 +55,20 @@ def create_comment(request, pk):
         form = CommentForm()
     context = {'post': post, 'form': form}
     return render(request, 'posts/comment.html', context)
+
+
+class CategoryListView(generic.ListView):
+    model = Category
+    template_name = 'posts/categories.html'
+    ordering = ['name']  # contexto: category_list
+
+
+def detail_category(request, pk):
+    # Responde com 404 caso a categoria não exista
+    category = get_object_or_404(Category, pk=pk)
+    # Reutiliza o template de listagem de posts, passando também a categoria
+    context = {
+        'category': category,
+        'post_list': category.posts.order_by('-pub_date'),
+    }
+    return render(request, 'posts/index.html', context)
