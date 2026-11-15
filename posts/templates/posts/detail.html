@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} | Onde Já Estive{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <p class="date">Publicado em {{ post.pub_date|date:"d/m/Y \à\s H:i" }}</p>
+    <div class="content">
+        {{ post.content|safe }}
+    </div>
+</article>
+<div class="actions">
+    <a class="button" href="{% url 'posts:update' post.id %}">Editar</a>
+    <a class="button danger" href="{% url 'posts:delete' post.id %}">Remover</a>
+    <a class="button secondary" href="{% url 'posts:index' %}">Voltar para a lista</a>
+</div>
+{% endblock %}

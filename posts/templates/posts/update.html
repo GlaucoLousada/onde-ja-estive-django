@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar post | Onde Já Estive{% endblock %}
+
+{% block content %}
+<h1>Editar post</h1>
+<form action="{% url 'posts:update' post.id %}" method="post">
+    {% csrf_token %}
+    <p>
+        <label for="id_title">Título</label>
+        <input type="text" name="title" id="id_title" value="{{ post.title }}">
+    </p>
+    <p>
+        <label for="id_content">Conteúdo (HTML)</label>
+        <textarea name="content" id="id_content">{{ post.content }}</textarea>
+    </p>
+    <div class="actions">
+        <button type="submit">Salvar</button>
+        <a class="button secondary" href="{% url 'posts:detail' post.id %}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

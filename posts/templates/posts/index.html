@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts | Onde Já Estive{% endblock %}
+
+{% block content %}
+<h1>Posts</h1>
+{% if post_list %}
+<ul class="post-list">
+    {% for post in post_list %}
+    <li>
+        <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+        <span class="date">{{ post.pub_date|date:"d/m/Y H:i" }}</span>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nenhum post encontrado.</p>
+{% endif %}
+<div class="actions">
+    <a class="button" href="{% url 'posts:create' %}">Criar novo post</a>
+</div>
+{% endblock %}
