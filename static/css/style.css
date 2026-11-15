@@ -1,0 +1,32 @@
+:root { --cor: #1f5f8b; --fundo: #f6f4ef; --texto: #26292c; --borda: #dcd7cc; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; color: var(--texto); background: var(--fundo); line-height: 1.6; }
+header { background: var(--cor); color: #fff; padding: 1rem 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+header a { color: #fff; text-decoration: none; }
+header .brand { font-size: 1.4rem; font-weight: bold; }
+header nav { display: flex; gap: 1.2rem; font-family: Arial, Helvetica, sans-serif; }
+header nav a:hover { text-decoration: underline; }
+main { max-width: 760px; margin: 2rem auto; padding: 0 1.25rem; }
+footer { text-align: center; padding: 1.5rem; font-size: .85rem; color: #6b6f73; }
+h1 { line-height: 1.25; margin-top: 0; }
+a { color: var(--cor); }
+.date { color: #6b6f73; font-size: .9rem; font-family: Arial, Helvetica, sans-serif; }
+.post-list { list-style: none; padding: 0; }
+.post-list li { background: #fff; border: 1px solid var(--borda); border-radius: 6px; padding: .9rem 1.1rem; margin-bottom: .8rem; }
+.post-list li a { font-size: 1.15rem; font-weight: bold; text-decoration: none; }
+.post-list li .date { display: block; }
+.content img { max-width: 100%; height: auto; border-radius: 6px; }
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0; font-family: Arial, Helvetica, sans-serif; }
+.button, button { display: inline-block; background: var(--cor); color: #fff; border: 0; border-radius: 4px; padding: .5rem 1rem; font-size: .95rem; text-decoration: none; cursor: pointer; font-family: Arial, Helvetica, sans-serif; }
+.button.secondary { background: #fff; color: var(--cor); border: 1px solid var(--cor); }
+.button.danger, button.danger { background: #a83232; }
+form p { margin: 0 0 1rem; }
+form label { display: block; font-weight: bold; margin-bottom: .25rem; font-family: Arial, Helvetica, sans-serif; }
+form input[type=text], form textarea, form select { width: 100%; padding: .5rem; border: 1px solid var(--borda); border-radius: 4px; font: inherit; }
+form textarea { min-height: 14rem; font-family: Consolas, monospace; font-size: .9rem; }
+.errorlist { color: #a83232; padding-left: 1rem; }
+.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; font-family: Arial, Helvetica, sans-serif; }
+.tags a { display: inline-block; border: 1px solid var(--cor); border-radius: 999px; padding: .1rem .75rem; font-size: .85rem; text-decoration: none; }
+.comments { list-style: none; padding: 0; }
+.comments li { background: #fff; border: 1px solid var(--borda); border-radius: 6px; padding: .7rem 1rem; margin-bottom: .7rem; }
+.comments li p { margin: .3rem 0 0; }

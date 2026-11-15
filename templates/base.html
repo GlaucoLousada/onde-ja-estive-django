@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Onde Já Estive{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <a class="brand" href="{% url 'posts:index' %}">Onde Já Estive</a>
+        <nav>
+            <a href="{% url 'posts:index' %}">Posts</a>
+            <a href="{% url 'posts:create' %}">Novo post</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>Onde Já Estive &mdash; PMR3304 Sistemas de Informação</footer>
+</body>
+</html>
